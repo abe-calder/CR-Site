@@ -33,13 +33,40 @@ body {
 
 .CR-header {
   color: royalblue;
-  padding-left: 5em;
+  padding-left: 4em;
   font-size: 3.5em;
 }
 
 .player-stats-link {
   color: black;
-  padding-left: 8em;
+  padding-left: 6em;
+  font-size: 2em;
+  text-decoration: none;
+  padding-top: 1.6em;
+  padding-bottom: 1.6em;
+}
+
+.home-link {
+  color: black;
+  padding-left: 7em;
+  font-size: 2em;
+  text-decoration: none;
+  padding-top: 1.6em;
+  padding-bottom: 1.6em;
+}
+
+.deck-builder-link {
+  color: black;
+  padding-left: 6em;
+  font-size: 2em;
+  text-decoration: none;
+  padding-top: 1.6em;
+  padding-bottom: 1.6em;
+}
+
+.saved-decks-link {
+  color: black;
+  padding-left: 6em;
   font-size: 2em;
   text-decoration: none;
   padding-top: 1.6em;
