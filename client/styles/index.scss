@@ -3,4 +3,45 @@
 html, 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: royalblue;
+}
+.app {
+  background-image: url('../../data/images/image\ \(1\).png');
+  width: 100%;
+  height: 1080px;
+  padding-bottom: none;
+}
+
+.app2 {
+  background-image: url('../../data/images/clash-royale-home-banner.jpg');
+  width: 100%;
+  height: 1080px;
+  padding-top: none;
+}
+
+.CR-logo-img {
+  width: 4%;
+  padding-left: 8em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.navbar {
+  background-color: antiquewhite;
+  display: flex;
+}
+
+.CR-header {
+  color: royalblue;
+  padding-left: 5em;
+  font-size: 3.5em;
+}
+
+.player-stats-link {
+  color: black;
+  padding-left: 8em;
+  font-size: 2em;
+  text-decoration: none;
+  padding-top: 1.6em;
+  padding-bottom: 1.6em;
 }
