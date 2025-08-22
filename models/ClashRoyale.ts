@@ -1,4 +1,5 @@
 export interface ClashRoyale {
+  // [x: string]: any
   tag: string
   name: string
   expLevel: number

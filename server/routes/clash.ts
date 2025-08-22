@@ -11,7 +11,9 @@ router.get('/', async (req, res) => {
       .get('https://api.clashroyale.com/v1/players/%232RYC9YQCY')
       .set('Authorization', `Bearer ${process.env.CR_API_TOKEN}`)
     res.json(response.body)
-  
 })
+
+
+
 
 export default router
