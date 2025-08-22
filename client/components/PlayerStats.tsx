@@ -58,19 +58,25 @@ function PlayerStats() {
     setFilteredResults(newFilteredResults)
   }
 
+  const fixedCards = data.cards.map((card) => ({
+    ...card,
+    level: getCommonLevel(card.rarity, card.level),
+    maxLevel: getCommonMaxLevel(card.rarity, card.maxLevel),
+  }))
+
   return (
     <>
-      <div>
-        <h1>Player Stats</h1>
+      <div style={{ width: '60%' }}>
+        <h1 style={{paddingLeft: '1.3em', paddingTop: '0.5em'}}>Player Stats</h1>
         <div
           style={{
             display: 'flex',
-
             alignItems: 'center',
             height: '3em',
             paddingTop: '2em',
           }}
         >
+          
           <label
             style={{
               fontSize: 'large',
@@ -81,7 +87,7 @@ function PlayerStats() {
             }}
             htmlFor="input"
           >
-            Input a card to search for...
+            <strong>Input a card to search for...</strong>
           </label>
           <br></br>
           <input
@@ -99,13 +105,18 @@ function PlayerStats() {
             Submit Search
           </button>
         </div>
+        <div></div>
         <ul>
           {/* Display results only if `filteredResults` is not empty */}
           {filteredResults.length > 0 ? (
             filteredResults.map((item: any) => (
               <li key={item.id}>
                 <h1>{item.name}</h1>
-                <img alt='card' src={item.iconUrls.medium as string} style={{width: '4%'}}></img>
+                <img
+                  alt="card"
+                  src={item.iconUrls.medium as string}
+                  style={{ width: '4%' }}
+                ></img>
                 <h3>Level: {item.level}</h3>
                 <h3>MaxLevel: {item.maxLevel}</h3>
                 <h3>Rarity: {item.rarity}</h3>
@@ -118,10 +129,48 @@ function PlayerStats() {
               </li>
             ))
           ) : (
-            // Display a message when the list is empty
-            <h1>Search for a card to see results.</h1>
+            // display message when search is empty
+            <h1>Search for a card to see results...</h1>
           )}
         </ul>
+      </div>
+      <div
+        style={{
+          float: 'right',
+          transform: 'translateY(-150px)',
+          paddingRight: '1em'
+        }}
+      >
+        <h1>Max Level Cards:</h1>
+        {fixedCards.length > 0 ? (
+          fixedCards.map((items) => (
+            <ul key="items" style={{ transform: 'translateX(6em)' }}>
+              {items.level == 15 ? (
+                <>
+                  <li>
+                    <h3
+                      style={{
+                        backgroundColor: '#Add8E6',
+                        width: 'fit-content',
+                      }}
+                    >
+                      {items.name}
+                    </h3>
+                  </li>
+                  <img
+                    alt="maxlvlcards"
+                    src={items.iconUrls.medium}
+                    style={{ width: '20%' }}
+                  ></img>
+                </>
+              ) : (
+                <p></p>
+              )}
+            </ul>
+          ))
+        ) : (
+          <p>error</p>
+        )}
       </div>
     </>
   )
