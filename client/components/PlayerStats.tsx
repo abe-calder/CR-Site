@@ -104,7 +104,8 @@ function PlayerStats() {
           {filteredResults.length > 0 ? (
             filteredResults.map((item: any) => (
               <li key={item.id}>
-                <h1>Name: {item.name}</h1>
+                <h1>{item.name}</h1>
+                <img alt='card' src={item.iconUrls.medium as string} style={{width: '4%'}}></img>
                 <h3>Level: {item.level}</h3>
                 <h3>MaxLevel: {item.maxLevel}</h3>
                 <h3>Rarity: {item.rarity}</h3>
