@@ -67,7 +67,9 @@ function PlayerStats() {
   return (
     <>
       <div style={{ width: '60%' }}>
-        <h1 style={{paddingLeft: '1.3em', paddingTop: '0.5em'}}>Player Stats</h1>
+        <h1 style={{ paddingLeft: '1.3em', paddingTop: '0.5em' }}>
+          Player Stats
+        </h1>
         <div
           style={{
             display: 'flex',
@@ -76,7 +78,6 @@ function PlayerStats() {
             paddingTop: '2em',
           }}
         >
-          
           <label
             style={{
               fontSize: 'large',
@@ -138,7 +139,7 @@ function PlayerStats() {
         style={{
           float: 'right',
           transform: 'translateY(-150px)',
-          paddingRight: '1em'
+          paddingRight: '1em',
         }}
       >
         <h1>Max Level Cards:</h1>
