@@ -1,6 +1,7 @@
 import { useClash } from '../hooks/useClash'
-import { Card, ClashRoyale, Rarity } from '../../models/ClashRoyale'
+import { Card, Rarity } from '../../models/ClashRoyale'
 import { useState } from 'react'
+import LoadingProgress from './LoadingBar'
 
 function PlayerStats() {
   const { data, isPending, isError } = useClash()
@@ -10,9 +11,13 @@ function PlayerStats() {
   const [filteredResults, setFilteredResults] = useState([])
 
   if (isPending) {
-    return <p>Loading Api data</p>
+    return <LoadingProgress />
   } else if (isError) {
-    return <p>There was an error..</p>
+    return (
+      <p style={{ backgroundColor: 'black' }}>
+        Uh oh... There was an error with the Api..
+      </p>
+    )
   }
 
   const rarityAdj = {
@@ -66,8 +71,14 @@ function PlayerStats() {
 
   return (
     <>
-      <div style={{ width: '60%' }}>
-        <h1 style={{ paddingLeft: '1.3em', paddingTop: '0.5em' }}>
+      <div style={{ width: '60%', overflow: 'hidden', position: 'relative' }}>
+        <h1
+          style={{
+            backgroundColor: 'rgba(173, 216, 230, 0.5)',
+            width: 'fit-content',
+            transform: 'translateX(40px)',
+          }}
+        >
           Player Stats
         </h1>
         <div
@@ -75,7 +86,7 @@ function PlayerStats() {
             display: 'flex',
             alignItems: 'center',
             height: '3em',
-            paddingTop: '2em',
+            width: '50%',
           }}
         >
           <label
@@ -83,8 +94,9 @@ function PlayerStats() {
               fontSize: 'large',
               textAlign: 'center',
               color: 'black',
-              paddingRight: '1em',
-              paddingLeft: '2.3em',
+              transform: 'translateX(40px)',
+              backgroundColor: 'rgba(173, 216, 230, 0.5)',
+              width: 'fit-content',
             }}
             htmlFor="input"
           >
@@ -96,53 +108,122 @@ function PlayerStats() {
               border: '2px solid black',
               borderRadius: '5px',
               color: 'black',
-              backgroundColor: 'white',
+              transform: 'translateX(45px)',
+              backgroundColor: 'rgba(173, 216, 230, 0.5)',
+              width: 'fit-content',
             }}
             type="text"
             value={searchTerm}
             onChange={handleInputChange}
           />
-          <button style={{ color: 'black' }} onClick={handleSearchClick}>
+          <button
+            style={{
+              color: 'black',
+              backgroundColor: 'rgba(173, 216, 230, 0.5)',
+              transform: 'translateX(50px)',
+              width: 'fit-content',
+            }}
+            onClick={handleSearchClick}
+          >
             Submit Search
           </button>
         </div>
-        <div></div>
-        <ul>
-          {/* Display results only if `filteredResults` is not empty */}
-          {filteredResults.length > 0 ? (
-            filteredResults.map((item: any) => (
-              <li key={item.id}>
-                <h1>{item.name}</h1>
-                <img
-                  alt="card"
-                  src={item.iconUrls.medium as string}
-                  style={{ width: '4%' }}
-                ></img>
-                <h3>Level: {item.level}</h3>
-                <h3>MaxLevel: {item.maxLevel}</h3>
-                <h3>Rarity: {item.rarity}</h3>
-                <h3>Elixir Cost: {item.elixirCost}</h3>
-                {item.evolutionLevel == 1 ? (
-                  <h3>Evo Level: {item.evolutionLevel}</h3>
-                ) : (
-                  <p></p>
-                )}
-              </li>
-            ))
-          ) : (
-            // display message when search is empty
-            <h1>Search for a card to see results...</h1>
-          )}
-        </ul>
+        <div>
+          <ul>
+            {/* Display results only if `filteredResults` is not empty */}
+            {filteredResults.length > 0 ? (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              filteredResults.map((item: any) => (
+                <li key={item.id}>
+                  <h1
+                    style={{
+                      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                      width: 'fit-content',
+                    }}
+                  >
+                    {item.name}
+                  </h1>
+                  <img
+                    alt="card"
+                    src={item.iconUrls.medium as string}
+                    style={{ width: '4%' }}
+                  ></img>
+                  <h3
+                    style={{
+                      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                      width: 'fit-content',
+                    }}
+                  >
+                    Level: {item.level}
+                  </h3>
+                  <h3
+                    style={{
+                      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                      width: 'fit-content',
+                    }}
+                  >
+                    MaxLevel: {item.maxLevel}
+                  </h3>
+                  <h3
+                    style={{
+                      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                      width: 'fit-content',
+                    }}
+                  >
+                    Rarity: {item.rarity}
+                  </h3>
+                  <h3
+                    style={{
+                      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                      width: 'fit-content',
+                    }}
+                  >
+                    Elixir Cost: {item.elixirCost}
+                  </h3>
+                  {item.evolutionLevel == 1 ? (
+                    <h3
+                      style={{
+                        backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                        width: 'fit-content',
+                      }}
+                    >
+                      Evo Level: {item.evolutionLevel}
+                    </h3>
+                  ) : (
+                    <p></p>
+                  )}
+                </li>
+              ))
+            ) : (
+              // display message when search is empty
+              <h1
+                style={{
+                  backgroundColor: 'rgba(173, 216, 230, 0.5)',
+                  width: 'fit-content',
+                }}
+              >
+                Search for a card to see results...
+              </h1>
+            )}
+          </ul>
+        </div>
       </div>
       <div
         style={{
           float: 'right',
-          transform: 'translateY(-150px)',
-          paddingRight: '1em',
+          position: 'absolute',
+          right: '5px',
+          top: '200px',
         }}
       >
-        <h1>Max Level Cards:</h1>
+        <h1
+          style={{
+            backgroundColor: 'rgba(173, 216, 230, 0.5)',
+            width: 'fit-content',
+          }}
+        >
+          Max Level Cards:
+        </h1>
         {fixedCards.length > 0 ? (
           fixedCards.map((items) => (
             <ul key="items" style={{ transform: 'translateX(6em)' }}>
@@ -151,7 +232,7 @@ function PlayerStats() {
                   <li>
                     <h3
                       style={{
-                        backgroundColor: '#Add8E6',
+                        backgroundColor: 'rgba(173, 216, 230, 0.5)',
                         width: 'fit-content',
                       }}
                     >
