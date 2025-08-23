@@ -13,7 +13,4 @@ router.get('/', async (req, res) => {
     res.json(response.body)
 })
 
-
-
-
 export default router

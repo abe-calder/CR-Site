@@ -9,7 +9,7 @@ import DeckBuilder from './components/DeckBuilder'
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
-    <Route path="player-stats/:stats" element={<PlayerStats />} />
+    <Route path="player-stats/" element={<PlayerStats />} />
     <Route path="deck-builder/" element={<DeckBuilder />} />
     <Route path="saved-decks/" element={<SavedDecks />} />
   </Route>,
