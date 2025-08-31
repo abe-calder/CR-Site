@@ -1,4 +1,4 @@
-import { useClash, useClashBattleLog } from '../hooks/useClash'
+import { useClash, useClashBattleLog, useClashLeaderboardLog } from '../hooks/useClash'
 import { Card, Rarity } from '../../models/ClashRoyale'
 import { useState } from 'react'
 import LoadingProgress from './LoadingBar'
@@ -11,6 +11,8 @@ function PlayerStats() {
     isPending: isPendingBattle,
     isError: isErrorBattle,
   } = useClashBattleLog()
+
+  // const {data: leaderboardData, isPendingLeaderboard, isErrorLeaderboard} = useClashLeaderboardLog()
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -35,6 +37,16 @@ function PlayerStats() {
       </p>
     )
   }
+
+  //  if (isPendingLeaderboard) {
+  //   return <LoadingProgress />
+  // } else if (isErrorLeaderboard) {
+  //   return (
+  //     <p style={{ backgroundColor: 'black' }}>
+  //       Uh oh... There was an error with the BattleLog data..
+  //     </p>
+  //   )
+  // }
 
   const rarityAdj = {
     common: 0,
@@ -73,7 +85,7 @@ function PlayerStats() {
     }))
 
     const newFilteredResults: Card[] = fixedCards.filter((card) =>
-      card.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      card.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
     setFilteredResults(newFilteredResults)
@@ -87,14 +99,14 @@ function PlayerStats() {
 
   const battleLog = battleData
 
-  function help() {
+  function battleLogStats() {
     let wins = 0
     let losses = 0
     for (let i = 0; i < 25; i++) {
       const match = battleLog[i]
       match.team.map((tt: { trophyChange: number }) => {
         const tc = tt.trophyChange
-        if (tc < 0) {
+        if (tc <= 0) {
           losses += 1
         } else {
           wins += 1
@@ -103,7 +115,6 @@ function PlayerStats() {
     }
     return [[wins], [losses]]
   }
-  const last25BattlesResult = help()
 
   return (
     <>
@@ -124,28 +135,24 @@ function PlayerStats() {
             width: '50%',
           }}
         >
-          <label
+          <label className='contentStyl'
             style={{
               fontSize: 'large',
               textAlign: 'center',
               color: 'black',
               transform: 'translateX(40px)',
-              backgroundColor: 'rgba(173, 216, 230, 0.5)',
-              width: 'fit-content',
             }}
             htmlFor="input"
           >
             <strong>Input a card to search for...</strong>
           </label>
           <br></br>
-          <input
+          <input className='contentStyl'
             style={{
               border: '2px solid black',
               borderRadius: '5px',
               color: 'black',
               transform: 'translateX(45px)',
-              backgroundColor: 'rgba(173, 216, 230, 0.5)',
-              width: 'fit-content',
             }}
             type="text"
             value={searchTerm}
@@ -164,7 +171,6 @@ function PlayerStats() {
         </div>
         <div>
           <ul>
-            {/* Display results only if `filteredResults` is not empty */}
             {filteredResults.length > 0 ? (
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               filteredResults.map((item: any) => (
@@ -209,16 +215,16 @@ function PlayerStats() {
       >
         <h1 className="contentStyl">Max Level Cards:</h1>
         {fixedCards.length > 0 ? (
-          fixedCards.map((items) => (
-            <ul key="items" style={{ transform: 'translateX(6em)' }}>
-              {items.level == 15 ? (
+          fixedCards.map((maxTroops) => (
+            <ul key="maxTroops" style={{ transform: 'translateX(6em)' }}>
+              {maxTroops.level == 15 ? (
                 <>
                   <li>
-                    <h3 className="contentStyl">{items.name}</h3>
+                    <h3 className="contentStyl">{maxTroops.name}</h3>
                   </li>
                   <img
-                    alt="maxlvlcards"
-                    src={items.iconUrls.medium}
+                    alt="maxlvlmaxTroops"
+                    src={maxTroops.iconUrls.medium}
                     style={{ width: '20%' }}
                   ></img>
                 </>
@@ -234,14 +240,21 @@ function PlayerStats() {
       <div style={{ position: 'absolute', right: '50em', top: '200px' }}>
         <h1 className="contentStyl">Battle Log Data</h1>
         <h3 className="contentStyl">
-          Over my last 25 Battles, my win rate was{' '}
-          {String(last25BattlesResult[0] * 4)}%
+          Over my last 25 Battles, my win rate was {battleLogStats()[0] * 4}%
         </h3>
         <h3 className="contentStyl">
-          Over my last 25 Battles, I won {last25BattlesResult[0]} battles, and
-          lost {last25BattlesResult[1]}
+          Over my last 25 Battles, I won {battleLogStats()[0]} battles, and lost{' '}
+          {battleLogStats()[1]}
         </h3>
       </div>
+      {/* <div>
+        <h1>Leaderboard</h1>
+        {leaderboardData == undefined ? (
+          <p></p>
+        ) : (leaderboardData.map((player) => {
+            return player.name
+          }))}
+      </div> */}
     </>
   )
 }

@@ -4,7 +4,7 @@ import {
   // useQueryClient,
   // MutationFunction,
 } from '@tanstack/react-query'
-import { getClashRoyaleBattleLog, getClashRoyaleStats } from '../apis/clash.ts'
+import { getClashLeaderboardLog, getClashRoyaleBattleLog, getClashRoyaleStats } from '../apis/clash.ts'
 
 export function useClash() {
   const query = useQuery({ queryKey: ['clash'], queryFn: getClashRoyaleStats })
@@ -16,6 +16,13 @@ export function useClash() {
 
 export function useClashBattleLog() {
   const query = useQuery({queryKey: ['battlelog'], queryFn: getClashRoyaleBattleLog })
+  return {
+    ...query,
+  }
+}
+
+export function useClashLeaderboardLog() {
+  const query = useQuery({queryKey: ['leaderboard'], queryFn: getClashLeaderboardLog })
   return {
     ...query,
   }

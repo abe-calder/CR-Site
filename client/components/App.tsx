@@ -11,12 +11,7 @@ function App() {
         <Link className='deck-builder-link' to={'deck-builder/'}>Deck Builder</Link>
         <Link className='saved-decks-link' to={'saved-decks/'}>Saved Decks</Link>
       </div>
-      <div className="app">
         <Outlet/>
-      </div>
-      <div className='app2'>
-      </div>
-    
     </>
   )
 }

@@ -12,7 +12,7 @@ const routes = createRoutesFromElements(
     <Route path="player-stats/" element={<PlayerStats />} />
     <Route path="deck-builder/" element={<DeckBuilder />} />
     <Route path="saved-decks/" element={<SavedDecks />} />
-  </Route>,
+  </Route>
 )
 
 export default routes

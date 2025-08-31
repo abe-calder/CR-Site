@@ -6,5 +6,3 @@ const db = connection
 export async function getAllCards(): Promise<ClashRoyale[]> {
   return db('player_stats').select()
 }
-
-getAllCards()
