@@ -1,4 +1,8 @@
-import { useClash, useClashBattleLog, useClashLeaderboardLog } from '../hooks/useClash'
+import {
+  useClash,
+  useClashBattleLog,
+  useClashLeaderboardLog,
+} from '../hooks/useClash'
 import { Card, Rarity } from '../../models/ClashRoyale'
 import { useState } from 'react'
 import LoadingProgress from './LoadingBar'
@@ -12,7 +16,11 @@ function PlayerStats() {
     isError: isErrorBattle,
   } = useClashBattleLog()
 
-  // const {data: leaderboardData, isPendingLeaderboard, isErrorLeaderboard} = useClashLeaderboardLog()
+  const {
+    data: leaderboardData,
+    isPending: isPendingLeaderboard,
+    isError: isErrorLeaderboard,
+  } = useClashLeaderboardLog()
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -22,7 +30,7 @@ function PlayerStats() {
     return <LoadingProgress />
   } else if (isError) {
     return (
-      <p style={{ backgroundColor: 'black' }}>
+      <p style={{ backgroundColor: 'black', color: 'white' }}>
         Uh oh... There was an error with the PlayerStats data..
       </p>
     )
@@ -32,21 +40,21 @@ function PlayerStats() {
     return <LoadingProgress />
   } else if (isErrorBattle) {
     return (
-      <p style={{ backgroundColor: 'black' }}>
+      <p style={{ backgroundColor: 'black', color: 'white' }}>
         Uh oh... There was an error with the BattleLog data..
       </p>
     )
   }
 
-  //  if (isPendingLeaderboard) {
-  //   return <LoadingProgress />
-  // } else if (isErrorLeaderboard) {
-  //   return (
-  //     <p style={{ backgroundColor: 'black' }}>
-  //       Uh oh... There was an error with the BattleLog data..
-  //     </p>
-  //   )
-  // }
+  if (isPendingLeaderboard) {
+    return <LoadingProgress />
+  } else if (isErrorLeaderboard) {
+    return (
+      <p style={{ backgroundColor: 'black', color: 'white' }}>
+        Uh oh... There was an error with the Leaderboard data..
+      </p>
+    )
+  }
 
   const rarityAdj = {
     common: 0,
@@ -85,7 +93,7 @@ function PlayerStats() {
     }))
 
     const newFilteredResults: Card[] = fixedCards.filter((card) =>
-      card.name.toLowerCase().includes(searchTerm.toLowerCase())
+      card.name.toLowerCase().includes(searchTerm.toLowerCase()),
     )
 
     setFilteredResults(newFilteredResults)
@@ -118,11 +126,11 @@ function PlayerStats() {
 
   return (
     <>
-      <div style={{ width: '60%', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ width: '50vw', overflow: 'hidden', position: 'relative' }}>
         <h1
           className="contentStyl"
           style={{
-            transform: 'translateX(40px)',
+            transform: 'translateX(1.8vw)',
           }}
         >
           Player Stats
@@ -131,28 +139,30 @@ function PlayerStats() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            height: '3em',
+            height: '4vh',
             width: '50%',
           }}
         >
-          <label className='contentStyl'
+          <label
+            className="contentStyl"
             style={{
               fontSize: 'large',
               textAlign: 'center',
               color: 'black',
-              transform: 'translateX(40px)',
+              transform: 'translateX(1.9vw)',
             }}
             htmlFor="input"
           >
             <strong>Input a card to search for...</strong>
           </label>
           <br></br>
-          <input className='contentStyl'
+          <input
+            className="contentStyl"
             style={{
-              border: '2px solid black',
-              borderRadius: '5px',
+              border: '0.125rem solid black',
+              borderRadius: '0.3125rem',
               color: 'black',
-              transform: 'translateX(45px)',
+              transform: 'translateX(2.15vw)',
             }}
             type="text"
             value={searchTerm}
@@ -162,7 +172,7 @@ function PlayerStats() {
             className="contentStyl"
             style={{
               color: 'black',
-              transform: 'translateX(50px)',
+              transform: 'translateX(2.5vw)',
             }}
             onClick={handleSearchClick}
           >
@@ -181,11 +191,11 @@ function PlayerStats() {
                     src={item.iconUrls.medium as string}
                     style={{ width: '4%' }}
                   ></img>
-                  <h3 className="contentStyl">Level: {item.level}</h3>
-                  <h3 className="contentStyl">MaxLevel: {item.maxLevel}</h3>
-                  <h3 className="contentStyl">Rarity: {item.rarity}</h3>
-                  <h3 className="contentStyl">
-                    Elixir Cost: {item.elixirCost}
+                  <h3 style={{color: '#363737'}} className="contentStyl"><strong style={{color: 'black'}}>Level: </strong>{item.level}</h3>
+                  <h3 style={{color: '#363737'}} className="contentStyl"><strong style={{color: 'black'}}>MaxLevel: </strong>{item.maxLevel}</h3>
+                  <h3 style={{color: '#363737'}} className="contentStyl"><strong style={{color: 'black'}}>Rarity: </strong>{item.rarity}</h3>
+                  <h3 style={{color: '#363737'}} className="contentStyl">
+                    <strong style={{color: 'black'}}>Elixir Cost: </strong>{item.elixirCost}
                   </h3>
                   {item.evolutionLevel == 1 ? (
                     <h3 className="contentStyl">
@@ -209,14 +219,14 @@ function PlayerStats() {
         style={{
           float: 'right',
           position: 'absolute',
-          right: '5px',
-          top: '200px',
+          right: '0.8vw',
+          top: '20vh',
         }}
       >
         <h1 className="contentStyl">Max Level Cards:</h1>
         {fixedCards.length > 0 ? (
           fixedCards.map((maxTroops) => (
-            <ul key="maxTroops" style={{ transform: 'translateX(6em)' }}>
+            <ul key="maxTroops" style={{ transform: 'translateX(6vw)' }}>
               {maxTroops.level == 15 ? (
                 <>
                   <li>
@@ -237,24 +247,50 @@ function PlayerStats() {
           <p>error</p>
         )}
       </div>
-      <div style={{ position: 'absolute', right: '50em', top: '200px' }}>
+      <div style={{ position: 'absolute', right: '50em', top: '12.5rem' }}>
         <h1 className="contentStyl">Battle Log Data</h1>
         <h3 className="contentStyl">
-          Over my last 25 Battles, my win rate was {battleLogStats()[0] * 4}%
+          Over my last 25 Battles, my win rate was {battleLogStats()[0] as never * 4}%
         </h3>
         <h3 className="contentStyl">
           Over my last 25 Battles, I won {battleLogStats()[0]} battles, and lost{' '}
           {battleLogStats()[1]}
         </h3>
       </div>
-      {/* <div>
+      <div style={{
+          position: 'absolute',
+          right: '45vw',
+          top: '40vh',
+        }}>
         <h1>Leaderboard</h1>
-        {leaderboardData == undefined ? (
+        {leaderboardData ? (
+          leaderboardData.items.map((players) => {
+            return (
+              <>
+                <h2 style={{color: '#363737'}}>
+                  <strong style={{color: 'black'}}>Rank: </strong>
+                  {players.rank}
+                </h2>
+                <h3 style={{color: '#363737'}}>
+                  <strong style={{color: 'black'}}>Player Name: </strong>
+                  {players.name}
+                </h3>
+                <h3 style={{color: '#363737'}}>
+                  <strong style={{color: 'black'}}>Medals: </strong>
+                  {players.score}
+                </h3>
+                <h3 style={{color: '#363737'}}>
+                  <strong style={{color: 'black'}}>Clan: </strong>
+                  {players.clan?.name}
+                </h3>
+                <br></br>
+              </>
+            )
+          })
+        ) : (
           <p></p>
-        ) : (leaderboardData.map((player) => {
-            return player.name
-          }))}
-      </div> */}
+        )}
+      </div>
     </>
   )
 }

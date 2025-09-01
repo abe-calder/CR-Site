@@ -22,7 +22,7 @@ export default function LoadingProgress() {
   }, [])
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div style={{ textAlign: 'center', marginTop: '3.125rem' }}>
       {loading ? (
         <FaSpinner className="spinner-icon" size={40} color="#3f51b5" />
       ) : (
@@ -36,7 +36,7 @@ export default function LoadingProgress() {
 
 function ProgressBar({ progress }) {
   return (
-    <div className="progress-bar-container" style={{ width: '80%', margin: '20px auto' }}>
+    <div className="progress-bar-container" style={{ width: '80vw', margin: '1.25rem auto' }}>
       <div
         className="progress-bar-fill"
         style={{ width: `${progress}%` }}

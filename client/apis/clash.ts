@@ -1,7 +1,7 @@
 import request from 'superagent'
 import { ClashRoyale } from '../../models/ClashRoyale'
 import { ClashBattleLog } from '../../models/ClashBattleLog'
-import { Item } from '../../models/ClashLeaderboard'
+import { ClashLeaderboard } from '../../models/ClashLeaderboard'
 
 const rootURL = new URL(`/api/v1`, document.baseURI)
 
@@ -17,5 +17,5 @@ export async function getClashRoyaleBattleLog() {
 
 export async function getClashLeaderboardLog() {
   const response = await request.get(`${rootURL}/clash/leaderboard`)
-  return response.body as Item
+  return response.body as ClashLeaderboard
 }
