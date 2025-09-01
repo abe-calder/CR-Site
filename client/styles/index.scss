@@ -3,4 +3,166 @@
 html, 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: royalblue;
+}
+.app {
+  background-image: url('../../data/images/image\ \(1\).png');
+  background-size: cover;
+  height: 100vh;
+  padding-bottom: none;
+}
+
+#text {
+  display: none
+}
+
+.contentStyl {
+  // background-color: rgba(173, 216, 230, 0.5);
+  width: fit-content;
+  color: black
+}
+
+.app2 {
+  background-image: url('../../data/images/clash-royale-home-banner.jpg');
+  background-size: cover;
+  height: 100vh;
+  padding-top: none;
+}
+
+@media (max-width: 768px) {
+    .app .app2 {
+        background-image: url('../../data/images/image\ \(1\).png');
+        background-size: cover;
+        height: 100vh;
+        padding-bottom: none;
+
+    }
+}
+
+@media (max-width: 321px) {
+    .app .app2 .navbar {
+        background-image: url('../../data/images/image\ \(1\).png');
+        background-size: 1000%;
+        width: 100vw;
+        height: 100vh;
+        padding-bottom: none;
+
+    }
+}
+
+.CR-logo-img {
+  width: 10em;
+  padding-left: 8em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.navbar {
+  background-color: antiquewhite;
+  display: flex;
+    list-style: none;
+    padding: 0;
+  gap: 2rem;
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none; /* Hidden by default on mobile */
+        flex-direction: column;
+        position: absolute;
+        width: 100vw;
+        background-color: antiquewhite;
+    }
+  }
+
+.CR-header {
+  color: royalblue;
+  font-size: 3.5em;
+  padding: 1rem 1rem;
+}
+
+.player-stats-link {
+  color: black;
+  font-size: 2em;
+  text-decoration: none;
+  padding: 4rem 1rem;
+  border-radius: 0.3125rem;
+  background-color: transparent; /* Default background */
+  transition: font-size 0.3s ease;
+}
+
+a:hover {
+  color: royalblue; 
+  text-decoration: underline;
+   font-size: 2.2em; 
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0.1em; /* Thickness of the underline */
+  bottom: 0;
+  left: 0;
+  background-color: blue;
+  transition: width 0.3s ease; /* Animate the width */
+}
+
+
+
+.home-link {
+  color: black;
+  font-size: 2em;
+  text-decoration: none;
+  padding: 4rem 1rem;
+  border-radius: 0.3125rem;
+  background-color: transparent; /* Default background */
+  transition: font-size 0.3s ease;
+}
+
+.deck-builder-link {
+  color: black;
+  font-size: 2em;
+  text-decoration: none;
+  padding: 4rem 1rem;
+  border-radius: 0.3125rem;
+  background-color: transparent; /* Default background */
+   transition: font-size 0.3s ease;
+}
+
+.saved-decks-link {
+  color: black;
+  font-size: 2em;
+  text-decoration: none;
+  padding: 4rem 1rem;
+  border-radius: 0.3125rem;
+  background-color: transparent; /* Default background */
+  transition: font-size 0.3s ease;
+}
+
+.progress-bar-container {
+  width: 100vw;
+  height: 2vh;
+  background-color: #e0e0e0;
+  border-radius: 0.625rem;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100vh;
+  background-color: #4caf50;
+  transition: width 0.5s ease-in-out;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+  display: flex;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
 }

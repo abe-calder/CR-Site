@@ -1,13 +1,23 @@
+import { join } from 'node:path'
 import express from 'express'
 import * as Path from 'node:path'
+import * as URL from 'node:url'
 
-import fruitRoutes from './routes/fruits.ts'
+import clash from './routes/clash.ts'
+import clashBattleLog from './routes/clashBattlelog.ts'
+import clashLeaderboard from './routes/clashLeaderboard.ts'
+
+const __filename = URL.fileURLToPath(import.meta.url)
+const __dirname = Path.dirname(__filename)
 
 const server = express()
 
 server.use(express.json())
+server.use(express.static(join(__dirname, './public')))
 
-server.use('/api/v1/fruits', fruitRoutes)
+server.use('/api/v1/clash', clash)
+server.use('/api/v1/clash/battlelog', clashBattleLog)
+server.use('/api/v1/clash/leaderboard', clashLeaderboard)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
