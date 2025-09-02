@@ -12,7 +12,7 @@ export async function getClashRoyaleStats() {
 
 export async function getClashRoyaleBattleLog() {
   const response = await request.get(`${rootURL}/clash/battlelog`)
-  return response.body as ClashBattleLog
+  return response.body as ClashBattleLog[]
 }
 
 export async function getClashLeaderboardLog() {

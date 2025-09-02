@@ -4,6 +4,8 @@ html,
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: royalblue;
+  overflow-x: hidden;
+
 }
 .app {
   background-image: url('../../data/images/image\ \(1\).png');
@@ -19,7 +21,8 @@ body {
 .contentStyl {
   // background-color: rgba(173, 216, 230, 0.5);
   width: fit-content;
-  color: black
+  color: black;
+  font-size: 1vw;
 }
 
 .app2 {
@@ -51,42 +54,72 @@ body {
 }
 
 .CR-logo-img {
-  width: 10em;
-  padding-left: 8em;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  width: 5.75vw;
+  padding-left: 0.8vw;
+  padding-top: 0.8vw;
+  padding-bottom: 0.8vw;
 }
 
 .navbar {
   background-color: antiquewhite;
   display: flex;
-    list-style: none;
-    padding: 0;
-  gap: 2rem;
-  width: 100vw;
+  align-items: center;
+  list-style: none;
+  gap: 1vw;
+  width: 99vw;
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1vw;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 4vw;
+  height: 0.7vh;
+  background-color: black;
+  margin: 0.9vh 0;
 }
 
 @media (max-width: 768px) {
-    .navbar ul {
-        display: none; /* Hidden by default on mobile */
-        flex-direction: column;
-        position: absolute;
-        width: 100vw;
-        background-color: antiquewhite;
-    }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 7.8125VH;
+    left: 0;
+    width: 100%;
+    background-color: antiquewhite;
   }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
 
 .CR-header {
   color: royalblue;
-  font-size: 3.5em;
-  padding: 1rem 1rem;
+  font-size: 3vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 
-.player-stats-link {
+.nav-link {
   color: black;
-  font-size: 2em;
+  font-size: 1.3vw;
   text-decoration: none;
-  padding: 4rem 1rem;
+  padding: 3vw;
   border-radius: 0.3125rem;
   background-color: transparent; /* Default background */
   transition: font-size 0.3s ease;
@@ -95,14 +128,14 @@ body {
 a:hover {
   color: royalblue; 
   text-decoration: underline;
-   font-size: 2.2em; 
+ font-size: 1.75vw; 
 }
 
 a::after {
   content: '';
   position: absolute;
   width: 0;
-  height: 0.1em; /* Thickness of the underline */
+  height: 0.01vh; /* Thickness of the underline */
   bottom: 0;
   left: 0;
   background-color: blue;
@@ -111,35 +144,6 @@ a::after {
 
 
 
-.home-link {
-  color: black;
-  font-size: 2em;
-  text-decoration: none;
-  padding: 4rem 1rem;
-  border-radius: 0.3125rem;
-  background-color: transparent; /* Default background */
-  transition: font-size 0.3s ease;
-}
-
-.deck-builder-link {
-  color: black;
-  font-size: 2em;
-  text-decoration: none;
-  padding: 4rem 1rem;
-  border-radius: 0.3125rem;
-  background-color: transparent; /* Default background */
-   transition: font-size 0.3s ease;
-}
-
-.saved-decks-link {
-  color: black;
-  font-size: 2em;
-  text-decoration: none;
-  padding: 4rem 1rem;
-  border-radius: 0.3125rem;
-  background-color: transparent; /* Default background */
-  transition: font-size 0.3s ease;
-}
 
 .progress-bar-container {
   width: 100vw;
@@ -166,3 +170,23 @@ a::after {
     flex-direction: column;
   }
 }
+
+// @media (max-width: 768px) {
+//   .player-stats-max-level-cards {
+//     position: static !important;
+//     float: none !important;
+//     transform: translateX(0) !important;
+//   }
+
+//   .player-stats-battle-log-data {
+//     position: static !important;
+//     float: none !important;
+//   }
+
+//   .player-stats-leaderboard {
+//     position: static !important;
+//     float: none !important;
+//     overflow-x: auto;
+//   }
+// }
+

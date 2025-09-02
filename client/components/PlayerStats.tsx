@@ -4,7 +4,7 @@ import {
   useClashLeaderboardLog,
 } from '../hooks/useClash'
 import { Card, Rarity } from '../../models/ClashRoyale'
-import { useState } from 'react'
+import { SetStateAction, useState } from 'react'
 import LoadingProgress from './LoadingBar'
 
 function PlayerStats() {
@@ -96,7 +96,7 @@ function PlayerStats() {
       card.name.toLowerCase().includes(searchTerm.toLowerCase()),
     )
 
-    setFilteredResults(newFilteredResults)
+    setFilteredResults(newFilteredResults as SetStateAction<never[]>)
   }
 
   const fixedCards = data.cards.map((card) => ({
@@ -125,12 +125,19 @@ function PlayerStats() {
   }
 
   return (
-    <>
-      <div style={{ width: '50vw', overflow: 'hidden', position: 'relative' }}>
+    <div style={{position: 'relative'}}>
+      <div
+        style={{
+          width: '47%',
+          maxWidth: '50vw',
+          // overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
         <h1
           className="contentStyl"
           style={{
-            transform: 'translateX(1.8vw)',
+            transform: 'translate(1.8vw)',
           }}
         >
           Player Stats
@@ -140,7 +147,7 @@ function PlayerStats() {
             display: 'flex',
             alignItems: 'center',
             height: '4vh',
-            width: '50%',
+            // width: '50%',
           }}
         >
           <label
@@ -149,20 +156,24 @@ function PlayerStats() {
               fontSize: 'large',
               textAlign: 'center',
               color: 'black',
-              transform: 'translateX(1.9vw)',
+              transform: 'translate(-0.5vw, 2.5vh)',
+              padding: '1vw 1vw 1vw 1vw',
             }}
             htmlFor="input"
           >
-            <strong>Input a card to search for...</strong>
+            <strong className="contentStyl">
+              Input a card to search for...
+            </strong>
           </label>
           <br></br>
           <input
             className="contentStyl"
             style={{
-              border: '0.125rem solid black',
-              borderRadius: '0.3125rem',
+              border: '0.125vw',
+              borderRadius: '0.6vh',
               color: 'black',
-              transform: 'translateX(2.15vw)',
+              transform: 'translate(-0.5vw, 2.5vh)',
+              fontSize: '0.7vw',
             }}
             type="text"
             value={searchTerm}
@@ -172,15 +183,16 @@ function PlayerStats() {
             className="contentStyl"
             style={{
               color: 'black',
-              transform: 'translateX(2.5vw)',
+              transform: 'translate(0.5vw, 2.5vh)',
+              fontSize: '0.5vw',
             }}
             onClick={handleSearchClick}
           >
             Submit Search
           </button>
         </div>
-        <div>
-          <ul>
+        <div style={{ position: 'relative', width: 'fit-content', transform: 'translate(0, 3vh)', height: '100%' }}>
+          <ul style={{ width: 'fit-content' }}>
             {filteredResults.length > 0 ? (
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               filteredResults.map((item: any) => (
@@ -189,13 +201,23 @@ function PlayerStats() {
                   <img
                     alt="card"
                     src={item.iconUrls.medium as string}
-                    style={{ width: '4%' }}
+                    style={{ width: '20%' }}
                   ></img>
-                  <h3 style={{color: '#363737'}} className="contentStyl"><strong style={{color: 'black'}}>Level: </strong>{item.level}</h3>
-                  <h3 style={{color: '#363737'}} className="contentStyl"><strong style={{color: 'black'}}>MaxLevel: </strong>{item.maxLevel}</h3>
-                  <h3 style={{color: '#363737'}} className="contentStyl"><strong style={{color: 'black'}}>Rarity: </strong>{item.rarity}</h3>
-                  <h3 style={{color: '#363737'}} className="contentStyl">
-                    <strong style={{color: 'black'}}>Elixir Cost: </strong>{item.elixirCost}
+                  <h3 style={{ color: '#363737' }} className="contentStyl">
+                    <strong style={{ color: 'black' }}>Level: </strong>
+                    {item.level}
+                  </h3>
+                  <h3 style={{ color: '#363737' }} className="contentStyl">
+                    <strong style={{ color: 'black' }}>MaxLevel: </strong>
+                    {item.maxLevel}
+                  </h3>
+                  <h3 style={{ color: '#363737' }} className="contentStyl">
+                    <strong style={{ color: 'black' }}>Rarity: </strong>
+                    {item.rarity}
+                  </h3>
+                  <h3 style={{ color: '#363737' }} className="contentStyl">
+                    <strong style={{ color: 'black' }}>Elixir Cost: </strong>
+                    {item.elixirCost}
                   </h3>
                   {item.evolutionLevel == 1 ? (
                     <h3 className="contentStyl">
@@ -208,7 +230,10 @@ function PlayerStats() {
               ))
             ) : (
               // display message when search is empty
-              <h1 className="contentStyl">
+              <h1
+                style={{ transform: 'translateY(.5vh)' }}
+                className="contentStyl"
+              >
                 Search for a card to see results...
               </h1>
             )}
@@ -216,17 +241,20 @@ function PlayerStats() {
         </div>
       </div>
       <div
+        className="player-stats-max-level-cards"
         style={{
           float: 'right',
           position: 'absolute',
           right: '0.8vw',
-          top: '20vh',
+          top: '6vh',
         }}
       >
-        <h1 className="contentStyl">Max Level Cards:</h1>
+        <h1 style={{ transform: 'translateX(2vw)' }} className="contentStyl">
+          Max Level Cards:
+        </h1>
         {fixedCards.length > 0 ? (
           fixedCards.map((maxTroops) => (
-            <ul key="maxTroops" style={{ transform: 'translateX(6vw)' }}>
+            <ul key="maxTroops" style={{ transform: 'translateX(3.25vw)' }}>
               {maxTroops.level == 15 ? (
                 <>
                   <li>
@@ -247,40 +275,47 @@ function PlayerStats() {
           <p>error</p>
         )}
       </div>
-      <div style={{ position: 'absolute', right: '50em', top: '12.5rem' }}>
+      <div
+        className="player-stats-battle-log-data"
+        style={{ position: 'absolute', left: '37.5vw', top: '6vh' }}
+      >
         <h1 className="contentStyl">Battle Log Data</h1>
         <h3 className="contentStyl">
-          Over my last 25 Battles, my win rate was {battleLogStats()[0] as never * 4}%
+          Over my last 25 Battles, my win rate was{' '}
+          {(battleLogStats()[0] as never) * 4}%
         </h3>
         <h3 className="contentStyl">
           Over my last 25 Battles, I won {battleLogStats()[0]} battles, and lost{' '}
           {battleLogStats()[1]}
         </h3>
       </div>
-      <div style={{
+      <div
+        className="player-stats-leaderboard"
+        style={{
           position: 'absolute',
-          right: '45vw',
-          top: '40vh',
-        }}>
-        <h1>Leaderboard</h1>
+          right: '41.5vw',
+          top: '30vh',
+        }}
+      >
+        <h1 className="contentStyl">Leaderboard Top 10 Global</h1>
         {leaderboardData ? (
           leaderboardData.items.map((players) => {
             return (
               <>
-                <h2 style={{color: '#363737'}}>
-                  <strong style={{color: 'black'}}>Rank: </strong>
+                <h2 className="contentStyl" style={{ color: '#363737' }}>
+                  <strong style={{ color: 'black' }}>Rank: </strong>
                   {players.rank}
                 </h2>
-                <h3 style={{color: '#363737'}}>
-                  <strong style={{color: 'black'}}>Player Name: </strong>
+                <h3 className="contentStyl" style={{ color: '#363737' }}>
+                  <strong style={{ color: 'black' }}>Player Name: </strong>
                   {players.name}
                 </h3>
-                <h3 style={{color: '#363737'}}>
-                  <strong style={{color: 'black'}}>Medals: </strong>
+                <h3 className="contentStyl" style={{ color: '#363737' }}>
+                  <strong style={{ color: 'black' }}>Medals: </strong>
                   {players.score}
                 </h3>
-                <h3 style={{color: '#363737'}}>
-                  <strong style={{color: 'black'}}>Clan: </strong>
+                <h3 className="contentStyl" style={{ color: '#363737' }}>
+                  <strong style={{ color: 'black' }}>Clan: </strong>
                   {players.clan?.name}
                 </h3>
                 <br></br>
@@ -291,7 +326,31 @@ function PlayerStats() {
           <p></p>
         )}
       </div>
-    </>
+      <h1 style={{transform: 'translate(0, 13vh)'}} className="contentStyl">Badges</h1>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 0.02fr)',
+          width: 'fit-content',
+          transform: 'translate(0, 13vh)'
+        }}
+      >
+        {data.badges.length > 0 ? (
+          data.badges.map((bm) => {
+            return (
+              <img
+                style={{ width: '3vw' }}
+                alt="badge"
+                src={bm.iconUrls.large != undefined ? bm.iconUrls.large : ''}
+                key={bm.name}
+              ></img>
+            )
+          })
+        ) : (
+          <p></p>
+        )}
+      </div>
+    </div>
   )
 }
 
