@@ -8,11 +8,8 @@ function DeckBuilder() {
   //     return c.rarity == 'common' ? <p>{c.iconUrls.medium}</p> : null
   //   })
   // }
-  
-  return (
-    <>
-    </>
-  )
+
+  return <></>
 }
 
 export default DeckBuilder
