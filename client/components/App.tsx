@@ -39,9 +39,7 @@ function App() {
           <IfAuthenticated>
           <button onClick={handleSignOut}>Sign out</button>
           {user && <p>Signed in as: {user?.nickname}</p>}
-          {userData?.favouriteFruit && (
-            <p>Favourite fruit: {userData?.favouriteFruit}</p>
-          )}
+            <p>PlayerTag: {userData?.playerTag}</p>
         </IfAuthenticated>
         <IfNotAuthenticated>
           <button onClick={handleSignIn}>Sign in</button>

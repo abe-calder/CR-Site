@@ -33,7 +33,7 @@ export function useUserMutation<TData = unknown, TVariables = unknown>(
       queryClient.invalidateQueries({ queryKey: ['user'] })
     },
   })
-  
+
   return mutation
 }
 

@@ -1,8 +1,8 @@
 export interface User {
   auth0Id: number
-  favouriteFruit: string
+  playerTag: string
 }
 
 export interface UserData {
-  favouriteFruit: string
+  playerTag: string
 }

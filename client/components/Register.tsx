@@ -29,7 +29,7 @@ function Register() {
 
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    favouriteFruit: '',
+    playerTag: '',
   })
 
   useEffect(() => {
@@ -53,12 +53,12 @@ function Register() {
   const hideError = () => {
     setErrorMsg('')
   }
-
+  
   return (
     <div>
       <div>
         <IfAuthenticated>
-          <h1>Enter your details</h1>
+          <h1>Enter your Player Tag</h1>
           {errorMsg && (
             <div>
               Error: {errorMsg}
@@ -67,17 +67,17 @@ function Register() {
           )}
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="favouriteFruit">Favourite Fruit: </label>
+              <label htmlFor="playerTag">Player Tag: </label>
               <input
                 type="text"
-                id="favouriteFruit"
-                name="favouriteFruit"
-                value={form.favouriteFruit}
+                id="playerTag"
+                name="playerTag"
+                value={form.playerTag}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <button disabled={!form.favouriteFruit}>Register</button>
+              <button>Register</button>
             </div>
           </form>
         </IfAuthenticated>

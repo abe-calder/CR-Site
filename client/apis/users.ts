@@ -1,5 +1,6 @@
 import request from 'superagent'
 import { User, UserData } from '../../models/users.ts'
+import logError from './util.ts'
 
 
 const rootURL = new URL(`/api/v1`, document.baseURI)
@@ -15,6 +16,7 @@ export async function getUser({
     .get(`${rootURL}/users`)
     .set('Authorization', `Bearer ${token}`)
     .then((res) => (res.body.user ? res.body.user : null))
+    .catch(logError)
 }
 
 interface AddUserFunction {
@@ -31,4 +33,5 @@ export async function addUser({
     .set('Authorization', `Bearer ${token}`)
     .send(newUser)
     .then((res) => res.body.user)
+    .catch(logError)
 }

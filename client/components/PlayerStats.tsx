@@ -254,7 +254,7 @@ function PlayerStats() {
         </h1>
         {fixedCards.length > 0 ? (
           fixedCards.map((maxTroops) => (
-            <ul key="maxTroops" style={{ transform: 'translateX(3.25vw)' }}>
+            <ul key="maxedTroops" style={{ transform: 'translateX(3.25vw)' }}>
               {maxTroops.level == 15 ? (
                 <>
                   <li>
