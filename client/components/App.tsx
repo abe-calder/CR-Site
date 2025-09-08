@@ -1,12 +1,30 @@
 import { Link, Outlet } from 'react-router';
 import { useState } from 'react';
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useUser } from '../hooks/useUsers.ts';
 
 function App() {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false)
+  const { logout, loginWithRedirect, user } = useAuth0()
+  const { data: userData } = useUser()
 
   const toggleNav = () => {
-    setIsActive(!isActive);
+    setIsActive(!isActive)
   };
+
+
+  const handleSignOut = () => {
+    logout()
+  }
+
+  const handleSignIn = () => {
+    loginWithRedirect({
+      authorizationParams: {
+        redirectUri: `${window.location.origin}/register`
+      },
+    })
+  }
 
   return (
     <>
@@ -18,6 +36,16 @@ function App() {
           <Link className='nav-link player-stats-link' to={'player-stats/'}>Player Stats</Link>
           <Link className='nav-link deck-builder-link' to={'deck-builder/'}>Deck Builder</Link>
           <Link className='nav-link saved-decks-link' to={'saved-decks/'}>Saved Decks</Link>
+          <IfAuthenticated>
+          <button onClick={handleSignOut}>Sign out</button>
+          {user && <p>Signed in as: {user?.nickname}</p>}
+          {userData?.favouriteFruit && (
+            <p>Favourite fruit: {userData?.favouriteFruit}</p>
+          )}
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <button onClick={handleSignIn}>Sign in</button>
+        </IfNotAuthenticated>
         </div>
         <div className="hamburger" onClick={toggleNav}>
           <div className="line"></div>
