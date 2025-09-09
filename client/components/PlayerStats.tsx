@@ -113,17 +113,17 @@ function PlayerStats() {
     for (let i = 0; i < 25; i++) {
       const match = battleLog[i]
       match.type == 'pathOfLegend'
-        ? match.team.map((t: { trophyChange: number }) => {
+        ? match.team.map((t) => {
             const tc = t.trophyChange
-            if (tc <= 1) {
+            if (tc as number <= 1) {
               wins += 1
             }
           })
         : null
       match.type == 'pathOfLegend'
-        ? match.opponent.map((troph: { trophyChange: number }) => {
+        ? match.opponent.map((troph) => {
             const tc = troph.trophyChange
-            if (tc <= 1) {
+            if (tc as number <= 1) {
               losses += 1
             }
           })
@@ -145,7 +145,6 @@ function PlayerStats() {
         <h1
           className="contentStyl"
           style={{
-            transform: 'translate(1.8vw)',
           }}
         >
           Player Stats
@@ -316,7 +315,7 @@ function PlayerStats() {
         {leaderboardData ? (
           leaderboardData.items.map((players) => {
             return (
-              <>
+              <div key={players.rank}>
                 <h2 className="contentStyl" style={{ color: '#363737' }}>
                   <strong style={{ color: 'black' }}>Rank: </strong>
                   {players.rank}
@@ -334,7 +333,7 @@ function PlayerStats() {
                   {players.clan?.name}
                 </h3>
                 <br></br>
-              </>
+              </div>
             )
           })
         ) : (
@@ -359,7 +358,7 @@ function PlayerStats() {
                 style={{ width: '3vw' }}
                 alt="badge"
                 src={bm.iconUrls.large != undefined ? bm.iconUrls.large : ''}
-                key={bm.name}
+                key={bm.iconUrls.large}
               ></img>
             )
           })

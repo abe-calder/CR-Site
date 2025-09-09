@@ -20,6 +20,5 @@ export async function addUser(
 
 export async function getAuth0Id(auth0Id: string): Promise<UserData[]> {
   const id = db('users').select('auth0Id').where(auth0Id)
-  console.log(id)
   return id
 }

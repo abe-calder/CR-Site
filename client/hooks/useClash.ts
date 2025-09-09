@@ -18,11 +18,9 @@ export function useClash() {
     enabled: !!user,
     queryFn: async () => {
       const token = await getAccessTokenSilently()
-      // console.log(token)
       return getClashRoyaleStats(token)
     },
   })
-  console.log(query.data)
   return {
     ...query,
     // Extra queries go here e.g. addFruit: useAddFruit()
@@ -36,7 +34,6 @@ export function useClashBattleLog() {
     enabled: !!user,
     queryFn: async () => {
       const token = await getAccessTokenSilently()
-      // console.log(token)
       return getClashRoyaleBattleLog(token)
     },
   })
