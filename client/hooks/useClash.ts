@@ -4,10 +4,25 @@ import {
   // useQueryClient,
   // MutationFunction,
 } from '@tanstack/react-query'
-import { getClashLeaderboardLog, getClashRoyaleBattleLog, getClashRoyaleStats } from '../apis/clash.ts'
+import {
+  getClashLeaderboardLog,
+  getClashRoyaleBattleLog,
+  getClashRoyaleStats,
+} from '../apis/clash.ts'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export function useClash() {
-  const query = useQuery({ queryKey: ['clash'], queryFn: getClashRoyaleStats })
+  const { user, getAccessTokenSilently } = useAuth0()
+  const query = useQuery({
+    queryKey: ['clash'],
+    enabled: !!user,
+    queryFn: async () => {
+      const token = await getAccessTokenSilently()
+      // console.log(token)
+      return getClashRoyaleStats(token)
+    },
+  })
+  console.log(query.data)
   return {
     ...query,
     // Extra queries go here e.g. addFruit: useAddFruit()
@@ -15,14 +30,26 @@ export function useClash() {
 }
 
 export function useClashBattleLog() {
-  const query = useQuery({queryKey: ['battlelog'], queryFn: getClashRoyaleBattleLog })
+  const { user, getAccessTokenSilently } = useAuth0()
+  const query = useQuery({
+    queryKey: ['battlelog'],
+    enabled: !!user,
+    queryFn: async () => {
+      const token = await getAccessTokenSilently()
+      // console.log(token)
+      return getClashRoyaleBattleLog(token)
+    },
+  })
   return {
     ...query,
   }
 }
 
 export function useClashLeaderboardLog() {
-  const query = useQuery({queryKey: ['leaderboard'], queryFn: getClashLeaderboardLog })
+  const query = useQuery({
+    queryKey: ['leaderboard'],
+    queryFn: getClashLeaderboardLog,
+  })
   return {
     ...query,
   }

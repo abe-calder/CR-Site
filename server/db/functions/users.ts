@@ -7,7 +7,6 @@ export async function getUserById(
   auth0Id: string,
 ): Promise<UserData> {
   const id = db('users').select('playerTag').where('auth0Id', auth0Id).first()
-  // console.log(id)
   return id
 }
 

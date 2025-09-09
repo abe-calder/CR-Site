@@ -53,12 +53,15 @@ function Register() {
   const hideError = () => {
     setErrorMsg('')
   }
-  
+
   return (
     <div>
       <div>
         <IfAuthenticated>
-          <h1>Enter your Player Tag</h1>
+          <h1>
+            Enter your Player Tag WITHOUT the # symbol
+          </h1>
+          <p></p>
           {errorMsg && (
             <div>
               Error: {errorMsg}
@@ -67,7 +70,9 @@ function Register() {
           )}
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="playerTag">Player Tag: </label>
+              <label htmlFor="playerTag">
+                Player Tag: 
+              </label>
               <input
                 type="text"
                 id="playerTag"
@@ -77,8 +82,29 @@ function Register() {
               />
             </div>
             <div>
-              <button>Register</button>
+              <button>
+                Register
+              </button>
             </div>
+            <h3>
+              The player tag is found in the Clash Royale app under the profile
+              section
+            </h3>
+            <p className="loading-info">
+              Please enter the player tag WITHOUT the # symbol
+            </p>
+            <p className="loading-info">
+              The player tag will look something like this:
+            </p>
+            <p className="loading-info">
+              #RCURY2U
+            </p>
+            <h3>
+              If you don&apos;t have a Clash Royale account or player tag go to{' '}
+              <br></br>the{' '}
+              <a id='normal' href="https://royaleapi.com/">Royale Api Website </a>
+              and search for a player and use their tag
+            </h3>
           </form>
         </IfAuthenticated>
         <IfNotAuthenticated>

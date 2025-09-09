@@ -1,17 +1,19 @@
 import express from 'express'
 import 'dotenv/config'
 import request from 'superagent'
-// import { getAuth0Id } from '../db/functions/users'
-// import checkJwt, { JwtRequest } from '../auth0'
-// import { getUserById } from '../db/functions/users'
-// import checkJwt, { JwtRequest } from '../auth0'
+import checkJwt from '../auth0'
+import  { JwtRequest } from '../auth0'
+import { getUserById } from '../db/functions/users'
+
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
+router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
+    const auth0Id = req.auth?.sub
+    const user = await getUserById(auth0Id as string)
     const response = await request
-      .get(`https://api.clashroyale.com/v1/players/%232RYC9YQCY`)
+      .get(`https://api.clashroyale.com/v1/players/%23${user.playerTag}`)
       .set('Authorization', `Bearer ${process.env.CR_API_TOKEN}`)
     res.json(response.body)
   } catch (error) {

@@ -119,19 +119,19 @@ body {
   color: black;
   font-size: 1.3vw;
   text-decoration: none;
-  padding: 3vw;
+  padding: 2vw;
   border-radius: 0.3125rem;
   background-color: transparent; /* Default background */
   transition: font-size 0.3s ease;
 }
 
-a:hover {
+a:hover:not(#normal) {
   color: royalblue; 
   text-decoration: underline;
- font-size: 1.75vw; 
+  font-size: 1.75vw; 
 }
 
-a::after {
+a::after:not(#normal) {
   content: '';
   position: absolute;
   width: 0;
@@ -171,22 +171,18 @@ a::after {
   }
 }
 
-// @media (max-width: 768px) {
-//   .player-stats-max-level-cards {
-//     position: static !important;
-//     float: none !important;
-//     transform: translateX(0) !important;
-//   }
+.link-info {
+  display: flex;
+  font-size: 0.5vw;
+}
 
-//   .player-stats-battle-log-data {
-//     position: static !important;
-//     float: none !important;
-//   }
+.info-container {
+  align-items: center;
+  justify-content: center;
+  padding: 1.5vw;
+}
 
-//   .player-stats-leaderboard {
-//     position: static !important;
-//     float: none !important;
-//     overflow-x: auto;
-//   }
-// }
-
+.loading-info {
+  font-weight: 600 !important;
+  font-size: 0.8vw !important;
+}

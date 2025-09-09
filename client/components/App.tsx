@@ -37,12 +37,12 @@ function App() {
           <Link className='nav-link deck-builder-link' to={'deck-builder/'}>Deck Builder</Link>
           <Link className='nav-link saved-decks-link' to={'saved-decks/'}>Saved Decks</Link>
           <IfAuthenticated>
-          <button onClick={handleSignOut}>Sign out</button>
-          {user && <p>Signed in as: {user?.nickname}</p>}
-            <p>PlayerTag: {userData?.playerTag}</p>
+          <button style={{border: 'none'}} className='nav-link' onClick={handleSignOut}>Sign out</button>
+          <div className='info-container'>{user && <p className='link-info' style={{}}>Signed in as: {user?.nickname}</p>}
+            <p className='link-info' style={{}}>PlayerTag: {userData?.playerTag}</p></div>
         </IfAuthenticated>
         <IfNotAuthenticated>
-          <button onClick={handleSignIn}>Sign in</button>
+          <button style={{border: 'none'}} className='nav-link' onClick={handleSignIn}>Sign in</button>
         </IfNotAuthenticated>
         </div>
         <div className="hamburger" onClick={toggleNav}>
