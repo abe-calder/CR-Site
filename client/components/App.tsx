@@ -34,7 +34,7 @@ function App() {
         <div className={`nav-links ${isActive ? 'active' : ''}`}>
           <Link className='nav-link home-link' to={'/'}>Home</Link>
           <Link className='nav-link player-stats-link' to={'player-stats/'}>Player Stats</Link>
-          <Link className='nav-link deck-builder-link' to={'deck-builder/'}>Deck Builder</Link>
+          <Link className='nav-link deck-builder-link' to={'deck-builder/:raritySelect'}>Deck Builder</Link>
           <Link className='nav-link saved-decks-link' to={'saved-decks/'}>Saved Decks</Link>
           <IfAuthenticated>
           <button style={{border: 'none'}} className='nav-link' onClick={handleSignOut}>Sign out</button>
