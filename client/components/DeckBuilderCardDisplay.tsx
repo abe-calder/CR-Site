@@ -40,6 +40,7 @@ export default function DeckBuilderCardDisplay() {
 
   return ( 
   <>
+  
     {cardDisplay(raritySelect)}
   
   </>
