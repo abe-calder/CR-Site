@@ -138,7 +138,6 @@ function PlayerStats() {
         style={{
           width: '47%',
           maxWidth: '50vw',
-          // overflow: 'hidden',
           position: 'relative',
         }}
       >
@@ -154,7 +153,6 @@ function PlayerStats() {
             display: 'flex',
             alignItems: 'center',
             height: '4vh',
-            // width: '50%',
           }}
         >
           <label

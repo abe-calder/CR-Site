@@ -1,11 +1,14 @@
-import { useParams } from 'react-router'
-import { useNavigate } from 'react-router'
 import { useClash } from '../hooks/useClash'
 
-export default function DeckBuilderCardDisplay() {
-  const { raritySelect } = useParams<{ raritySelect: string }>()
-  const navigate = useNavigate()
+interface Props {
+  cardRarity: string
+  setCardRarity: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function DeckBuilderCardDisplay({ cardRarity, setCardRarity }: Props) {
   const { data, isPending, isError } = useClash()
+
+  // console.log(cardRarity)
 
   if (isPending) {
     return <p>Loading Cards...</p>
@@ -16,33 +19,9 @@ export default function DeckBuilderCardDisplay() {
 
   const cards = data.cards
 
-  function cardDisplay(raritySelect: string) {
-    const adaptiveCards = cards.filter((rarity) => rarity.rarity == raritySelect)
-    {
-      raritySelect == raritySelect ? (
-        adaptiveCards &&
-        adaptiveCards.map((card) => {
-          return (
-            <div key={card.id}>
-              <img
-                alt="cards"
-                style={{ width: '3vw' }}
-                src={card.iconUrls.medium}
-              ></img>
-            </div>
-          )
-        })
-      ) : (
-        <p></p>
-      )
-    }
+  function hnadleCardDisplay() {
+    const adaptiveCards = cards.filter((rarity) => rarity.rarity == cardRarity)
   }
 
-  return ( 
-  <>
-  
-    {cardDisplay(raritySelect)}
-  
-  </>
-  )
+  return <></>
 }

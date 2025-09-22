@@ -12,7 +12,7 @@ const routes = createRoutesFromElements(
     <Route index element={<Home />} />
     <Route path='register' element={<Register />} />
     <Route path="player-stats/" element={<PlayerStats />} />
-    <Route path="deck-builder/:raritySelect" element={<DeckBuilder />} />
+    <Route path="deck-builder/" element={<DeckBuilder />} />
     <Route path="saved-decks/" element={<SavedDecks />} />
   </Route>
 )

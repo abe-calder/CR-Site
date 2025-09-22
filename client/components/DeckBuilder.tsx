@@ -1,52 +1,16 @@
 import { RadioGroup } from 'radix-ui'
-import { useParams } from 'react-router'
-import { useNavigate } from 'react-router'
 import DeckBuilderCardDisplay from './DeckBuilderCardDisplay'
+import { useState } from 'react'
 
 function DeckBuilder() {
-  const { raritySelect } = useParams<{ raritySelect: string }>()
-  const navigate = useNavigate()
-  // const { data, isPending, isError } = useClash()
+  const [ cardRarity, setCardRarity ] = useState('common')
 
-  const handleRarityAdjust = (raritySelect: string) => {
-    navigate(`/deckbuilder/${raritySelect}`)
+
+  const handleRarityAdjust = (rarityC: string) => {
+    setCardRarity(rarityC)
+    // console.log(cardRarity)
   }
 
-  // if (isPending) {
-  //   return <p>Loading Cards...</p>
-  // }
-  // if (isError) {
-  //   return <p>There was an error loading cards...</p>
-  // }
-
-  // const cards = data.cards
-
-  // function commonDisplay() {
-  //   const commonCards = cards.filter((rarity) => rarity.rarity == 'common')
-  //   {
-  //     raritySelect == 'common' ? (
-  //       commonCards &&
-  //       commonCards.map((card) => {
-  //         return (
-  //           <div key={card.id}>
-  //             <img
-  //               alt="common-cards"
-  //               style={{ width: '3vw' }}
-  //               src={card.iconUrls.medium}
-  //             ></img>
-  //           </div>
-  //         )
-  //       })
-  //     ) : (
-  //       <p></p>
-  //     )
-  //   }
-  // }
-
-  // const rareCards = cards.filter((rarity) => rarity.rarity == 'rare')
-  // const epicCards = cards.filter((rarity) => rarity.rarity == 'epic')
-  // const legendaryCards = cards.filter((rarity) => rarity.rarity == 'legendary')
-  // const championCards = cards.filter((rarity) => rarity.rarity == 'champion')
 
   return (
     <>
@@ -152,7 +116,7 @@ function DeckBuilder() {
             </RadioGroup.Root>
           </form>
           <div>
-            <DeckBuilderCardDisplay />
+            <DeckBuilderCardDisplay cardRarity={cardRarity} setCardRarity={setCardRarity}/>
           </div>
         </div>
       </div>
