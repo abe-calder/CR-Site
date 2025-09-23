@@ -4,7 +4,7 @@ import App from './components/App'
 import Home from './components/Home'
 import PlayerStats from './components/PlayerStats'
 import SavedDecks from './components/SavedDecks'
-import DeckBuilder from './components/DeckBuilder'
+import DeckBuilder from './components/DeckBuilderRadioGroup'
 import Register from './components/Register'
 
 const routes = createRoutesFromElements(

@@ -187,6 +187,16 @@ a::after:not(#normal) {
   font-size: 0.8vw !important;
 }
 
+.adaptive-cards-container {
+  display: grid;
+  grid-template-columns: repeat(5, 0.2fr);
+  width: fit-content;
+  transform: translate(-40vw, -20vh);
+}
+
+.adaptive-cards {
+}
+
 
 
 // DECKBUILDER RADIO BUTTONS CSS
