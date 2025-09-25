@@ -1,12 +1,32 @@
 import { Link, Outlet } from 'react-router';
 import { useState } from 'react';
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useUser } from '../hooks/useUsers.ts';
+import { useParams } from 'react-router';
 
 function App() {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false)
+  const { logout, loginWithRedirect, user } = useAuth0()
+  const { data: userData } = useUser()
+ 
 
   const toggleNav = () => {
-    setIsActive(!isActive);
+    setIsActive(!isActive)
   };
+
+
+  const handleSignOut = () => {
+    logout()
+  }
+
+  const handleSignIn = () => {
+    loginWithRedirect({
+      authorizationParams: {
+        redirectUri: `${window.location.origin}/register`
+      },
+    })
+  }
 
   return (
     <>
@@ -16,8 +36,16 @@ function App() {
         <div className={`nav-links ${isActive ? 'active' : ''}`}>
           <Link className='nav-link home-link' to={'/'}>Home</Link>
           <Link className='nav-link player-stats-link' to={'player-stats/'}>Player Stats</Link>
-          <Link className='nav-link deck-builder-link' to={'deck-builder/'}>Deck Builder</Link>
+          <Link className='nav-link deck-builder-link' to={`deck-builder/`}>Deck Builder</Link>
           <Link className='nav-link saved-decks-link' to={'saved-decks/'}>Saved Decks</Link>
+          <IfAuthenticated>
+          <button style={{border: 'none'}} className='nav-link' onClick={handleSignOut}>Sign out</button>
+          <div className='info-container'>{user && <p className='link-info' style={{}}>Signed in as: {user?.nickname}</p>}
+            <p className='link-info' style={{}}>PlayerTag: {userData?.playerTag}</p></div>
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <button style={{border: 'none'}} className='nav-link' onClick={handleSignIn}>Sign in</button>
+        </IfNotAuthenticated>
         </div>
         <div className="hamburger" onClick={toggleNav}>
           <div className="line"></div>

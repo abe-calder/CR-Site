@@ -5,7 +5,7 @@ export interface ClashBattleLog {
     arena:                Arena;
     gameMode:             Arena;
     deckSelection:        DeckSelection;
-    team:                 Opponent[];
+    team:                 Team[];
     opponent:             Opponent[];
     isHostedMatch:        boolean;
     leagueNumber:         number;
@@ -51,6 +51,21 @@ export interface Opponent {
     supportCards:            SupportCard[];
     globalRank:              null;
     elixirLeaked:            number;
+}
+
+export interface Team {
+    tag:                     string;
+    name:                    string;
+    crowns:                  number;
+    kingTowerHitPoints:      number;
+    princessTowersHitPoints: number[] | null;
+    clan?:                   Clan;
+    cards:                   Card[];
+    supportCards:            SupportCard[];
+    globalRank:              null;
+    elixirLeaked:            number;
+    trophyChange?:           number;
+    startingTrophies?:       number;
 }
 
 export interface Card {
@@ -109,14 +124,5 @@ export enum Type {
     BoatBattle = "boatBattle",
     RiverRacePVP = "riverRacePvP",
     Trail = "trail",
+    PathOfLegend = "pathOfLegend",
 }
-
-
-// console.log(battleLog[0].team.map((tt) => {
-//     const tc = tt.trophyChange
-//     if (tc < 0) {
-//       return 0
-//     } else {
-//       return 1
-//     }
-// }))
