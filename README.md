@@ -1,4 +1,4 @@
-# 👑 CR-Site: Clash Royale Player Stats Explorer
+# CR-Site: Clash Royale Player Stats Explorer
 
 ## Table of Contents
 * [About the Project](#-about-the-project)
@@ -13,31 +13,31 @@
 
 ---
 
-## 📖 About the Project
+## About the Project
 
 **CR-Site** is a web application designed to fill the information gaps in the official Clash Royale mobile app. By using a player's unique player-tag, this site fetches and displays specific, detailed player statistics and metrics.
 
 It utilizes an API (The official Clash Royale API) to provide a deeper dive into player profiles, helping players and competitive clans analyze performance beyond the basics.
 
-## ✨ Features
+## Features
 
-* **Player Tag Lookup:** Instantly retrieve stats for any player using their in-game player-tag.
-* **Detailed Metrics:** View comprehensive game statistics . (e.g., Specific battle logs, win-rate breakdown, detailed card levels, all of the users max level cards (lvl 15), A search feature to view stats of players cards, Top 10 current global leaderboard)
+* **Player Tag Lookup:** Instantly retrieve stats for any player using their in game player-tag.
+* **Detailed Metrics:** View comprehensive game statistics . (e.g., Specific battle logs, win rate breakdown, detailed card levels, all of the users max level cards (lvl 15), A search feature to view stats of players cards, Top 10 current global leaderboard)
 * **Responsive UI:** A clean, responsive interface for easy viewing on desktop.
-* **API-Driven Backend:** Robust server-side logic to securely fetch and process game data.
+* **API Driven Backend:** Robust server side logic to securely fetch and process game data.
 
-## ⚙️ Technologies
+## Technologies
 
 This project is a full-stack application built with modern technologies.
 
 | Component | Technology | Description |
 | :--- | :--- | :--- |
-| **Frontend** | **TypeScript, SCSS, HTML** | Type-safe client-side logic and custom styling. |
+| **Frontend** | **TypeScript, SCSS, HTML** | Type safe client side logic and custom styling. |
 | **Build Tool** | **Vite** | Fast development server and optimized build process. |
-| **Backend/API** | **Node.js / Express** (likely) | Server-side routing, API key management, and data fetching. |
-| **API** | Clash Royale API (or similar) | Used to fetch real-time player data. |
+| **Backend/API** | **Node.js / Express** (likely) | Server side routing, API key management, and data fetching. |
+| **API** | Clash Royale API | Used to fetch real time player data. |
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow these instructions to get a local copy of the project up and running for development or testing.
 
@@ -83,16 +83,16 @@ You need to have Node.js and npm (or yarn/pnpm) installed on your machine.
 
 ---
 
-## 🔍 Usage
+## Usage
 
 Once the application is running, open the client URL (`http://localhost:5173`) in your browser.
 
 1.  Enter the player-tag (e.g., `#P0P0L0L0`) into the search field.
-2.  The application will display the extended, non-mobile-app stats for that player.
+2.  The application will display the extended, stats for that player.
 
 ---
 
-## 📂 Project Structure (Optional)
+## Project Structure (Optional)
 
 A brief breakdown of the main directories:
 
@@ -102,7 +102,7 @@ A brief breakdown of the main directories:
 
 ---
 
-## 👋 Contributing
+## Contributing
 
 I welcome contributions! If you have suggestions for features, bug fixes, or want to improve the codebase, please feel free to open an issue or submit a Pull Request.
 
