@@ -10,7 +10,6 @@
 * [Usage](#mag-usage)
 * [Project Structure](#file_folder-project-structure-optional)
 * [Contributing](#handshake-contributing)
-* [License](#scroll-license)
 
 ---
 
