@@ -15,7 +15,7 @@
 
 ## 📖 About the Project
 
-**CR-Site** is a web application designed to fill the information gaps in the official Clash Royale mobile app. By using a player's unique player-tag, this site fetches and displays specific, detailed player statistics and metrics that are currently unavailable to view directly in the game's interface.
+**CR-Site** is a web application designed to fill the information gaps in the official Clash Royale mobile app. By using a player's unique player-tag, this site fetches and displays specific, detailed player statistics and metrics.
 
 It utilizes an API (The official Clash Royale API) to provide a deeper dive into player profiles, helping players and competitive clans analyze performance beyond the basics.
 
