@@ -12,6 +12,8 @@ if (process.env.NODE_ENV !== 'production') {
     })
 }
 
+const CR_API_TOKEN = process.env.CR_API_TOKEN
+
 const router = express.Router()
 
 router.get('/', checkJwt, async (req: JwtRequest, res) => {
@@ -20,7 +22,7 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
     const user = await getUserById(auth0Id as string)
     const response = await request
       .get(`https://api.clashroyale.com/v1/players/%23${user.playerTag}`)
-      .set('Authorization', `Bearer ${process.env.CR_API_TOKEN}`)
+      .set('Authorization', `Bearer ${CR_API_TOKEN}`)
     res.json(response.body)
   } catch (error) {
     console.error(error)

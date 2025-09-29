@@ -10,11 +10,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 const router3 = express.Router()
 
+const CR_API_TOKEN = process.env.CR_API_TOKEN
+
 router3.get('/', async (req, res) => {
 
   const response = await request
     .get('https://api.clashroyale.com/v1/leaderboard/170000005?limit=10')
-    .set('Authorization', `Bearer ${process.env.CR_API_TOKEN}`)
+    .set('Authorization', `Bearer ${CR_API_TOKEN}`)
   res.json(response.body)
 })
 

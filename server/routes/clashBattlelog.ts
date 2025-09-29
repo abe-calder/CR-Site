@@ -13,6 +13,8 @@ import { getUserById } from '../db/functions/users'
 
 const router2 = express.Router()
 
+const CR_API_TOKEN = process.env.CR_API_TOKEN
+
 router2.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const auth0Id = req.auth?.sub
@@ -21,7 +23,7 @@ router2.get('/', checkJwt, async (req: JwtRequest, res) => {
       .get(
         `https://api.clashroyale.com/v1/players/%23${user.playerTag}/battlelog`,
       )
-      .set('Authorization', `Bearer ${process.env.CR_API_TOKEN}`)
+      .set('Authorization', `Bearer ${CR_API_TOKEN}`)
     res.json(response.body)
   } catch (error) {
     console.error(error)
