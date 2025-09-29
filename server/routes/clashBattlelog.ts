@@ -8,9 +8,8 @@ if (process.env.NODE_ENV !== 'production') {
     })
 }
 import checkJwt from '../auth0'
-import  { JwtRequest } from '../auth0'
+import { JwtRequest } from '../auth0'
 import { getUserById } from '../db/functions/users'
-
 
 const router2 = express.Router()
 
@@ -19,7 +18,9 @@ router2.get('/', checkJwt, async (req: JwtRequest, res) => {
     const auth0Id = req.auth?.sub
     const user = await getUserById(auth0Id as string)
     const response = await request
-      .get(`https://api.clashroyale.com/v1/players/%23${user.playerTag}/battlelog`)
+      .get(
+        `https://api.clashroyale.com/v1/players/%23${user.playerTag}/battlelog`,
+      )
       .set('Authorization', `Bearer ${process.env.CR_API_TOKEN}`)
     res.json(response.body)
   } catch (error) {
@@ -27,6 +28,5 @@ router2.get('/', checkJwt, async (req: JwtRequest, res) => {
     res.status(500).send('Something went wrong')
   }
 })
-
 
 export default router2
