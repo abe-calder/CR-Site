@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useUser } from '../hooks/useUsers.ts';
-import { useParams } from 'react-router';
 
 function App() {
   const [isActive, setIsActive] = useState(false)
@@ -37,7 +36,6 @@ function App() {
           <Link className='nav-link home-link' to={'/'}>Home</Link>
           <Link className='nav-link player-stats-link' to={'player-stats/'}>Player Stats</Link>
           <Link className='nav-link deck-builder-link' to={`deck-builder/`}>Deck Builder</Link>
-          <Link className='nav-link saved-decks-link' to={'saved-decks/'}>Saved Decks</Link>
           <IfAuthenticated>
           <button style={{border: 'none'}} className='nav-link' onClick={handleSignOut}>Sign out</button>
           <div className='info-container'>{user && <p className='link-info' style={{}}>Signed in as: {user?.nickname}</p>}
