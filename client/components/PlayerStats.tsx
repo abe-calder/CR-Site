@@ -112,32 +112,38 @@ function PlayerStats() {
     let losses = 0
     for (let i = 0; i < 25; i++) {
       const match = battleLog[i]
-      match.team.map((tt: { trophyChange: number }) => {
-        const tc = tt.trophyChange
-        if (tc <= 0) {
-          losses += 1
-        } else {
-          wins += 1
-        }
-      })
+      match.type == 'pathOfLegend'
+        ? match.team.map((t) => {
+            const tc = t.trophyChange
+            if (tc as number <= 1) {
+              wins += 1
+            }
+          })
+        : null
+      match.type == 'pathOfLegend'
+        ? match.opponent.map((troph) => {
+            const tc = troph.trophyChange
+            if (tc as number <= 1) {
+              losses += 1
+            }
+          })
+        : null
     }
     return [[wins], [losses]]
   }
 
   return (
-    <div style={{position: 'relative'}}>
+    <div style={{ position: 'relative' }}>
       <div
         style={{
           width: '47%',
           maxWidth: '50vw',
-          // overflow: 'hidden',
           position: 'relative',
         }}
       >
         <h1
           className="contentStyl"
           style={{
-            transform: 'translate(1.8vw)',
           }}
         >
           Player Stats
@@ -147,7 +153,6 @@ function PlayerStats() {
             display: 'flex',
             alignItems: 'center',
             height: '4vh',
-            // width: '50%',
           }}
         >
           <label
@@ -191,12 +196,19 @@ function PlayerStats() {
             Submit Search
           </button>
         </div>
-        <div style={{ position: 'relative', width: 'fit-content', transform: 'translate(0, 3vh)', height: '100%' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: 'fit-content',
+            transform: 'translate(0, 3vh)',
+            height: '100%',
+          }}
+        >
           <ul style={{ width: 'fit-content' }}>
             {filteredResults.length > 0 ? (
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              filteredResults.map((item: any) => (
-                <li key={item.id}>
+              filteredResults.map((item: any, i: number) => (
+                <li key={item.name + String(i)}>
                   <h1 className="contentStyl">{item.name}</h1>
                   <img
                     alt="card"
@@ -254,7 +266,7 @@ function PlayerStats() {
         </h1>
         {fixedCards.length > 0 ? (
           fixedCards.map((maxTroops) => (
-            <ul key="maxTroops" style={{ transform: 'translateX(3.25vw)' }}>
+            <ul key={maxTroops.id} style={{ transform: 'translateX(3.25vw)' }}>
               {maxTroops.level == 15 ? (
                 <>
                   <li>
@@ -301,7 +313,7 @@ function PlayerStats() {
         {leaderboardData ? (
           leaderboardData.items.map((players) => {
             return (
-              <>
+              <div key={players.rank}>
                 <h2 className="contentStyl" style={{ color: '#363737' }}>
                   <strong style={{ color: 'black' }}>Rank: </strong>
                   {players.rank}
@@ -319,20 +331,22 @@ function PlayerStats() {
                   {players.clan?.name}
                 </h3>
                 <br></br>
-              </>
+              </div>
             )
           })
         ) : (
           <p></p>
         )}
       </div>
-      <h1 style={{transform: 'translate(0, 13vh)'}} className="contentStyl">Badges</h1>
+      <h1 style={{ transform: 'translate(0, 13vh)' }} className="contentStyl">
+        Badges
+      </h1>
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(5, 0.02fr)',
           width: 'fit-content',
-          transform: 'translate(0, 13vh)'
+          transform: 'translate(0, 13vh)',
         }}
       >
         {data.badges.length > 0 ? (
@@ -342,7 +356,7 @@ function PlayerStats() {
                 style={{ width: '3vw' }}
                 alt="badge"
                 src={bm.iconUrls.large != undefined ? bm.iconUrls.large : ''}
-                key={bm.name}
+                key={bm.iconUrls.large}
               ></img>
             )
           })

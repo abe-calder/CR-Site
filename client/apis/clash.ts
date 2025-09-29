@@ -5,13 +5,13 @@ import { ClashLeaderboard } from '../../models/ClashLeaderboard'
 
 const rootURL = new URL(`/api/v1`, document.baseURI)
 
-export async function getClashRoyaleStats() {
-  const response = await request.get(`${rootURL}/clash`)
+export async function getClashRoyaleStats(token: string) {
+  const response = await request.get(`${rootURL}/clash`).set('Authorization', `Bearer ${token}`)
   return response.body as ClashRoyale
 }
 
-export async function getClashRoyaleBattleLog() {
-  const response = await request.get(`${rootURL}/clash/battlelog`)
+export async function getClashRoyaleBattleLog(token: string) {
+  const response = await request.get(`${rootURL}/clash/battlelog`).set('Authorization', `Bearer ${token}`)
   return response.body as ClashBattleLog[]
 }
 
