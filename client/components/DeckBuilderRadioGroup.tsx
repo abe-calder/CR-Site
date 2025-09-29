@@ -28,7 +28,7 @@ function DeckBuilder() {
           <img
             style={{ width: '20vw', maxWidth: '30vw' }}
             alt="deck"
-            src="data/images/emptydeckimage.webp"
+            src="/data/images/emptydeckimage.jpeg"
           ></img>
         </div>
 
@@ -116,7 +116,10 @@ function DeckBuilder() {
             </RadioGroup.Root>
           </form>
           <div>
-            <DeckBuilderCardDisplay cardRarity={cardRarity} setCardRarity={setCardRarity}/>
+            <DeckBuilderCardDisplay
+              cardRarity={cardRarity}
+              setCardRarity={setCardRarity}
+            />
           </div>
         </div>
       </div>
