@@ -2,7 +2,6 @@ import { join } from 'node:path'
 import express from 'express'
 import * as Path from 'node:path'
 import * as URL from 'node:url'
-
 import clash from './routes/clash.ts'
 import clashBattleLog from './routes/clashBattlelog.ts'
 import clashLeaderboard from './routes/clashLeaderboard.ts'
@@ -27,6 +26,14 @@ if (process.env.NODE_ENV === 'production') {
   server.get('*', (req, res) => {
     res.sendFile(Path.resolve('./dist/index.html'))
   })
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  import('dotenv')
+    .then((dotenv) => dotenv.config())
+    .catch((err) => {
+      console.error('Failed to load dotenv: ', err)
+    })
 }
 
 export default server
