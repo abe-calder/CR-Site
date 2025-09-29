@@ -1,7 +1,12 @@
 import express from 'express'
-import 'dotenv/config'
 import request from 'superagent'
-
+if (process.env.NODE_ENV !== 'production') {
+  import('dotenv')
+    .then((dotenv) => dotenv.config())
+    .catch((err) => {
+      console.error('Failed to load dotenv: ', err)
+    })
+}
 
 const router2 = express.Router()
 
