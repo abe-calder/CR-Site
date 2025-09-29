@@ -1,7 +1,7 @@
 import express from 'express'
 import request from 'superagent'
 if (process.env.NODE_ENV !== 'production') {
-  import('dotenv/config')
+  import('dotenv/')
     .then((dotenv) => dotenv.config())
     .catch((err) => {
       console.error('Failed to load dotenv: ', err)

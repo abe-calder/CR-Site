@@ -5,7 +5,7 @@ import  { JwtRequest } from '../auth0'
 import { getUserById } from '../db/functions/users'
 
 if (process.env.NODE_ENV !== 'production') {
-  import('dotenv')
+  import('dotenv/')
     .then((dotenv) => dotenv.config())
     .catch((err) => {
       console.error('Failed to load dotenv: ', err)
