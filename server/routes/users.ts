@@ -6,7 +6,6 @@ import * as db from '../db/functions/users.ts'
 
 const router = express.Router()
 
-// GET /api/v1/users
 router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const auth0Id = req.auth?.sub

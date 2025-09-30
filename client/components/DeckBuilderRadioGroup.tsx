@@ -5,12 +5,9 @@ import { useState } from 'react'
 function DeckBuilder() {
   const [ cardRarity, setCardRarity ] = useState('common')
 
-
   const handleRarityAdjust = (rarityC: string) => {
     setCardRarity(rarityC)
-    // console.log(cardRarity)
   }
-
 
   return (
     <>

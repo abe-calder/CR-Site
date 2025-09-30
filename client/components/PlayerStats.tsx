@@ -85,7 +85,6 @@ function PlayerStats() {
   }
 
   const handleSearchClick = () => {
-    // Only perform the search when the button is clicked
     const fixedCards = data.cards.map((card) => ({
       ...card,
       level: getCommonLevel(card.rarity, card.level),
