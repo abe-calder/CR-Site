@@ -1,7 +1,7 @@
 import express from 'express'
 import request from 'superagent'
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.CR_API_KEY !== 'production') {
   import('dotenv')
     .then((dotenv) => dotenv.config())
     .catch((err) => {

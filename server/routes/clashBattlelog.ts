@@ -4,7 +4,7 @@ import checkJwt from '../auth0'
 import { JwtRequest } from '../auth0'
 import { getUserById } from '../db/functions/users'
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.CR_API_KEY !== 'production') {
   import('dotenv')
     .then((dotenv) => dotenv.config())
     .catch((err) => {
