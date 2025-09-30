@@ -2,6 +2,14 @@ import express from 'express'
 import request from 'superagent'
 import 'dotenv/config'
 
+if (process.env.NODE_ENV !== 'production') {
+  import('dotenv')
+    .then((dotenv) => dotenv.config())
+    .catch((err) => {
+      console.error('Failed to load dotenv: ', err)
+    })
+}
+
 const CR_API_KEY = process.env.CR_API_KEY
 
 const router3 = express.Router()

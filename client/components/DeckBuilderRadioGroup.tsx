@@ -28,7 +28,7 @@ function DeckBuilder() {
           <img
             style={{ width: '20vw', maxWidth: '30vw' }}
             alt="deck"
-            src="/data/images/emptydeckimage.jpeg"
+            src="data/images/emptydeckimage.webp"
           ></img>
         </div>
 
