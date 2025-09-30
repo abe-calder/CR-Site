@@ -1,6 +1,5 @@
 import express from 'express'
 import request from 'superagent'
-import 'dotenv/config'
 
 if (process.env.NODE_ENV !== 'production') {
   import('dotenv')
@@ -10,10 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
     })
 }
 
-const CR_API_KEY = process.env.CR_API_KEY
-
 const router3 = express.Router()
-
 
 router3.get('/', async (req, res) => {
 
@@ -21,7 +17,7 @@ router3.get('/', async (req, res) => {
     .get('https://api.clashroyale.com/v1/leaderboard/170000005?limit=10')
     .set(
       'Authorization',
-      `Bearer ${CR_API_KEY}`,
+      `Bearer ${process.env.CR_API_KEY}`,
     )
   res.json(response.body)
 })
