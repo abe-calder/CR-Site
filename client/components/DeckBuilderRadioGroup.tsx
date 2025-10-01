@@ -3,7 +3,7 @@ import DeckBuilderCardDisplay from './DeckBuilderCardDisplay'
 import { useState } from 'react'
 
 function DeckBuilder() {
-  const [ cardRarity, setCardRarity ] = useState('common')
+  const [cardRarity, setCardRarity] = useState('common')
 
   const handleRarityAdjust = (rarityC: string) => {
     setCardRarity(rarityC)
@@ -11,28 +11,25 @@ function DeckBuilder() {
 
   return (
     <>
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative', height: '100vh' }}>
         <div>
           <h1 className="contentStyl">Build A Deck </h1>
         </div>
         <div
           style={{
-            position: 'relative',
-            width: 'fit-content',
-            transform: 'translate(8vw, 8vh)',
+            position: 'absolute',
+            width: '20vw',
+            transform: 'translate(8vw, 5vh)',
           }}
         >
-          <img
-            style={{ width: '20vw', maxWidth: '30vw' }}
-            alt="deck"
-            src="data/images/emptydeckimage.webp"
-          ></img>
+          <img style={{width: '20vw', position: 'relative'}} src="/images/IMG_1672.jpg" alt="empty-deck"></img>
         </div>
-
-        <div></div>
-
         <div
-          style={{ position: 'relative', transform: 'translate(85vw, -60vh)' }}
+          style={{
+            position: 'absolute',
+            transform: 'translate(85vw, 5vh)',
+            height: '100vh',
+          }}
         >
           <h1 className="contentStyl">Rarity</h1>
           <form>

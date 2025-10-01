@@ -8,6 +8,7 @@ interface Props {
 
 export default function DeckBuilderCardDisplay({
   cardRarity,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setCardRarity,
 }: Props) {
   const { data, isPending, isError } = useClash()

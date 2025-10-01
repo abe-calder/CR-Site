@@ -1,6 +1,5 @@
 import express from 'express'
 import request from 'superagent'
-
 if (process.env.NODE_ENV !== 'production') {
   import('dotenv')
     .then((dotenv) => dotenv.config())
