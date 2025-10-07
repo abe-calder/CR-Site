@@ -1,5 +1,7 @@
 # CR-Site: Clash Royale Player Stats Explorer
 
+Deployed Site at: https://cr-site.onrender.com/
+
 ## Table of Contents
 * [About the Project](#-about-the-project)
 * [Features](#sparkles-features)
